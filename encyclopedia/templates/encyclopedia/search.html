@@ -1,0 +1,19 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Wikipedia
+{% endblock %}
+
+{% block body %}
+<h1 class="mt-3 text-3xl font-medium tracking-wider text-blue-900 hover:text-blue-800 transition-colors cursor-pointer">Search results for '{{ q }}'</h1>
+
+<ul class="mt-6 px-4 list-disc">
+  {% if entry_titles %}
+  {% for entry_title in entry_titles %}
+  <li><a href="{% url 'entry' entry_title %}" class="text-base font-medium hover:text-blue-900">{{ entry_title }}</li>
+  {%endfor%}
+  {% else %}
+  <h1>No results for '{{ q }}'</h1>
+  {% endif %}
+</ul>
+{%endblock%}

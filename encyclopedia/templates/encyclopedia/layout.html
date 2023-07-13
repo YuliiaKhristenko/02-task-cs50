@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'encyclopedia/styles.css' %}"> {% endcomment %}
+    </head>
+    <body>
+        <div class="flex flex-row">
+            <div class="p-4 h-screen w-80 bg-blue-200 border-r-2 border-gray-300">
+                <h2 class="text-5xl font-medium tracking-wider text-blue-900 hover:text-blue-800 transition-colors"><a href="{% url 'index' %}" class="">Wikipedia</a></h2>
+                <form action="{% url 'search' %}" method="post">
+                     {% csrf_token %}
+                    <div>
+                    <input class="mt-6 mb-2 w-72 h-8 p-2 rounded-md outline-none focus:outline-blue-300 tracking-wider" type="text" name="q" placeholder="Search Wikipedia">
+                    </div>
+                    <div>
+                    <input type="submit" value="Search" class="w-72 p-1 rounded-md bg-blue-900 text-white text-lg cursor-pointer hover:bg-blue-800 tracking-wide">
+                    </div>
+                </form>
+                <div class="mt-6 hover:underline">
+                    <a href="{% url 'index' %}">Home</a>
+                </div>
+                <div class="mt-2 hover:underline">
+                    <a href="{% url 'add' %}">Create New Page</a>
+                </div>
+                <div class="mt-2 hover:underline">
+                    <a href="{% url 'random' %}">Random Page</a>
+                </div>
+                {% block nav %}
+                {% endblock %}
+            </div>
+            <div class="p-4 w-screen">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+
+    </body>
+</html>

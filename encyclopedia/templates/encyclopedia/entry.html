@@ -1,0 +1,10 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Wikipedia: {{ title }}
+{% endblock %}
+
+{% block body %}
+<div class="my-4 text-xl">{{ entry | safe}}</div>
+<div class="w-32 my-10 text-center p-1 rounded-md bg-gray-300 text-blue-900 text-lg cursor-pointer hover:bg-gray-200 tracking-wide"><a href="{% url 'edit' title %}">Edit page</a></div>
+{% endblock %}
